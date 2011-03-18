@@ -70,6 +70,14 @@ Vex.Flow.StaveNote.prototype.init = function(note_struct) {
     last_line = line;
     this.keyProps.push(props);
   }
+  // set the stem direction depending on which line the note is on
+  // the stem should go up if we below the middle line, and down if we are at 
+  // or above the middle line
+  if (last_line >= 3) {
+      note_struct.stem_direction = Vex.Flow.StaveNote.STEM_DOWN;
+  } else {
+      note_struct.stem_direction = Vex.Flow.StaveNote.STEM_UP;
+  }
 
   // Drawing
   this.modifiers = [];
